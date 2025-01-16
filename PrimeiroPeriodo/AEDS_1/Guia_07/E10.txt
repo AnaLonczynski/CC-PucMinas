@@ -1,0 +1,8 @@
+AMOR
+Digitos=4
+12345
+Digitos=5
+56677
+Digitos=10
+PARE5
+Digitos=15

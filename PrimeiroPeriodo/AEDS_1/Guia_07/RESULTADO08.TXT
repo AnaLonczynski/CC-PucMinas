@@ -1,0 +1,69 @@
+ Quantidade:[7]00
+1
+1
+2
+3
+5
+8
+ Quantidade:[10]00
+1
+1
+2
+3
+5
+8
+13
+21
+34
+ Quantidade:[7]00
+1
+1
+2
+3
+5
+8
+
+ Quantidade:[10]
+00
+1
+1
+2
+3
+5
+8
+13
+21
+34
+
+ Quantidade:[3]
+00
+1
+1
+
+ Quantidade:[10]
+00
+1
+1
+2
+3
+5
+8
+13
+21
+34
+
+ Quantidade:[4]
+0
+0
+1
+1
+2
+
+ Quantidade:[5]
+0
+1
+1
+2
+3
+
+ Quantidade:[0]

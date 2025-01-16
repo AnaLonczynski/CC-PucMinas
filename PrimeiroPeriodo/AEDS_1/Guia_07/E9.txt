@@ -1,0 +1,14 @@
+TESTE2
+Maiusculas=5
+1
+Maiusculas=5
+2
+Maiusculas=5
+CARINHO
+Maiusculas=12
+SENTimento
+Maiusculas=16
+ParEdEs
+Maiusculas=19
+Amarelas
+Maiusculas=20
