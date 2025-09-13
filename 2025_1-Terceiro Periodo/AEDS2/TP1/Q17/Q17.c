@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+ //oi
 
 // Função recursiva que verifica se uma string é um palíndromo
 int isPalindrome(char palavra[], int inicio, int fim) {
@@ -55,4 +56,5 @@ int main() {
 	
 	return 0;
 }
+
 
