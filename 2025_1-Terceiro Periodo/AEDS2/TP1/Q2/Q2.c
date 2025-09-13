@@ -7,6 +7,7 @@
 char changeCh(char change){
 	change = '*';
 	return change;
+	return change;
 }
 
 int isPalindrome(char palavra[]){
