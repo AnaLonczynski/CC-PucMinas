@@ -6,6 +6,7 @@
 
 char changeCh(char change){
 	change = '*';
+	change = '*';
 	return change;
 }
 
