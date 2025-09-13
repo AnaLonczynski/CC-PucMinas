@@ -1,0 +1,26 @@
+Guia_0402
+Ana Clara Lonczynski 0680668
+
+a.) x . ( x' + y )'
+    x . x . y' <-De Morgan
+    x . y' <- Idempotência
+
+b.) ( x' + y ) + ( x' . y )
+      x' + 
+    
+c.) ( x' . y' )' . ( x + y )
+      x + y . ( x + y ) <- De Morgan e Dupla Negação
+      x + y <- Consenso
+
+d.) ( x' . y )' + ( x' + y )'
+     x . y' + x . y <- De Morgan e Dupla Negação
+     x . ( y' + y) <- Distributiva 
+     x . 1 <-Tautologia
+     x <- Identidade
+
+e.) ( y + x' ) . ( y' + x )'
+    ( y + x' ) . y . x' <- De Morgan e Dupla Negação
+    ( y . y ) + ( y . x') . x'<- Distributiva
+      y + (x' . x') . y <- Associativa e Idempotência
+      y + x'. y  <-Idepotência
+      y + x'

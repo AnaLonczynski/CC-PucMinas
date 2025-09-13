@@ -1,0 +1,306 @@
+/* Estilos gerais */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(246, 244, 233);
+}
+
+header {
+   
+    width: 100%; /* Largura total do cabeçalho */
+    display: flex; /* Usa o modelo flexbox para layout */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: space-between; /* Alinha os itens com espaços iguais ao redor */
+    align-items: center; /* Centraliza verticalmente os itens */
+  }
+h1 {
+    color:rgb(222, 120, 73);
+    margin-left: 40px;
+    margin-top: 10px;
+    background-color: #ffc6c6;
+    padding: 10px 25px;
+    font-weight: bold;
+}
+h2 {
+
+    margin-left: 40px;
+    margin-top: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    
+}
+hr {
+    border: none;
+    border-bottom: 3px solid black; /* Cor e espessura da linha */
+    margin: 0 35px; /* Margem acima e abaixo da linha */
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-right: 40px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: black;
+    font-size:xx-large;
+    text-decoration: none;
+    font-weight: bold;
+}
+.inicio{
+    padding: 40px; /* Espaçamento interno */
+    display: flex; /* Exibir os elementos em linha */
+    align-items: center; /* Alinhar verticalmente os elementos*/
+}
+.bio {
+    margin-bottom: 20px;
+}
+.inicio p {
+   margin: 0px;
+}
+h3 {
+    color:#96796c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.foto {
+    width: 200px; /* Largura da imagem de perfil */
+    height: 200px; /* Altura da imagem de perfil */
+    margin-right: 20px; /* Margem à direita da imagem de perfil */
+}
+
+.instragram {
+    font-size: 40px;
+    color: black;
+}
+
+.container-fluid {
+    
+    margin: 0 25px 20px;
+   
+}
+
+.card {
+    margin: 20px 0;
+    width: 90%;
+}
+
+.carrossel{
+    margin: 40px 40px;
+    background-color: #ffdaeb;
+    padding: 40px;
+}
+
+h4 {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+
+}
+
+.col-sm-2 {
+    margin: 30px 0;
+}
+
+footer {
+    background-color: #924750;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-style: arial;
+}
+
+.carrossel p {
+    color: rgb(0, 0, 0);
+    font-size: large;
+    background-color: rgb(225, 208, 215);
+    font-family: Helvetica;
+
+}
+
+
+h5 {
+    font-weight: bold;
+    color:black;
+    background-color: rgb(195, 201, 207);
+
+}
+#menuToggle {
+    display: none;
+  }
+  
+  /* Oculta o elemento com a classe "menu-icon" */
+  .menu-icon {
+    display: none;
+  }
+/* Estilos específicos para diferentes tamanhos de tela (responsividade) */
+/* Media query para telas menores que 768px */
+@media screen and (max-width: 768px) {
+.col-sm-2 {
+    width: 30%;
+    margin-right: 30px;
+}
+.conteudo {
+    margin-left: 10px;
+}
+ .carrossel{
+    padding: 10px;
+    margin-left: 10px;
+ }
+
+
+   .top {
+    margin-top: 100px;
+   }
+
+   .inicio {
+    display: block;
+   }
+   .foto {
+     margin-left: 66px;
+   }
+   .texto {
+    margin-top: 10px;
+    text-align: center;
+   }
+    /* Altera o layout para exibição em blocos */
+    .container {
+      display: block; /* Usa o modelo de bloco */
+      margin: 0 auto; /* Centraliza horizontalmente */
+    }
+  
+    /* Estilo para o elemento com a classe "nome" em telas menores */
+    .nome {
+      margin: 50px; /* Define a margem */
+      font-size: 50px; /* Define o tamanho da fonte */
+    }
+  
+    /* Estilo para o elemento com a classe "top" em telas menores */
+    .top {
+      display: block; /* Usa o modelo de bloco */
+    }
+  
+    /* Estilo para o elemento com a classe "banner" em telas menores */
+    .banner {
+      display: block; /* Usa o modelo de bloco */
+      margin-top: 50px; /* Define a margem superior */
+      margin-left: 50px; /* Define a margem à esquerda */
+      width: 400px; /* Define a largura */
+      height: 300px; /* Define a altura */
+      margin: 0 auto; /* Centraliza horizontalmente */
+      border-radius: 10px; /* Adiciona um raio de borda */
+      margin-bottom: 50px; /* Define a margem inferior */
+    }
+  
+    /* Estilo para o elemento com a classe "catalogo" em telas menores */
+    .catalogo {
+      display: block; /* Usa o modelo de bloco */
+      margin-top: 8%; /* Define a margem superior */
+      font-size: large; /* Define o tamanho da fonte */
+    }
+
+  }
+  
+  /* Media query para telas menores que 768px */
+  @media screen and (max-width: 768px) {
+    /* Define o cabeçalho como fixo no topo da página */
+    header {
+      position: fixed; /* Define a posição fixa */
+      top: 0px; /* Alinha o topo do cabeçalho com o topo da página */
+      width: 100%; /* Define a largura total */
+    }
+  
+    /* Estilo para o elemento "nav" dentro do cabeçalho */
+    header nav {
+      display: absolute; /* Define a posição absoluta */
+      width: 100%; /* Define a largura total */
+      height: 100%; /* Define a altura total */
+    }
+  
+    /* Estilo para o elemento com a classe "aside" */
+    .aside {
+      margin-top: 30%; /* Define a margem superior */
+      margin-left: -50px; /* Define a margem à esquerda */
+    }
+  
+    /* Estilo para o menu principal */
+    .Menu {
+      display: flex; /* Usa o modelo flexbox para layout */
+      position: fixed; /* Define a posição fixa */
+      flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+      align-content: center; /* Centraliza verticalmente os itens */
+      top: 0px; /* Alinha o topo do menu com o topo da página */
+      left: 0px; /* Alinha a esquerda do menu com a esquerda da página */
+      width: 100%; /* Define a largura total */
+      height: 0%; /* Define a altura como zero (invisível) */
+      background-color: rgba(0, 0, 0, 0.7); /* Define a cor de fundo com transparência */
+      overflow: hidden; /* Esconde o conteúdo que excede a altura definida */
+      transition: height 0.3s; /* Adiciona uma transição suave na altura */
+    }
+  
+    /* Estilo para os itens de lista dentro do menu */
+    .Menu li {
+      display: block; /* Usa o modelo de bloco */
+      width: 100%; /* Define a largura total */
+      margin-left: 0px; /* Define a margem à esquerda como zero */
+      margin-bottom: 20px; /* Define a margem inferior */
+    }
+  
+    /* Estilo para os links dentro do menu */
+    .Menu li a {
+      display: block; /* Usa o modelo de bloco */
+      text-align: center; /* Centraliza o texto horizontalmente */
+      width: 100%; /* Define a largura total */
+    }
+  
+    /* Estilo para o ícone de menu */
+    .menu-icon {
+      width: 50px; /* Define a largura */
+      height: inherit; /* Herda a altura do elemento pai */
+      display: block; /* Usa o modelo de bloco */
+      position: absolute; /* Define a posição absoluta */
+      top: 15px; /* Define a distância do topo */
+      right: 30px; /* Define a distância da direita */
+      line-height: 60px; /* Define a altura da linha */
+      color: white; /* Define a cor do ícone */
+      z-index: 999; /* Define a ordem de empilhamento */
+    }
+  
+    /* Estilo para o ícone do menu quando o toggle está ativado */
+    #menuToggle:checked ~ label i:nth-child(2) {
+      display: block; /* Exibe o segundo ícone */
+    }
+  
+    /* Estilo para o ícone do menu quando o toggle está desativado */
+    #menuToggle:checked ~ label i:first-child {
+      display: none; /* Oculta o primeiro ícone */
+    }
+  
+    /* Estilo para o ícone do menu quando o toggle não está ativado */
+    #menuToggle:not(:checked) ~ label i:first-child {
+      display: block; /* Exibe o primeiro ícone */
+    }
+  
+    /* Estilo para o ícone do menu quando o toggle não está desativado */
+    #menuToggle:not(:checked) ~ label i:nth-child(2) {
+      display: none; /* Oculta o segundo ícone */
+    }
+  
+    /* Altera a altura do menu para 100% quando o toggle está ativado */
+    #menuToggle:checked ~ ul {
+      height: 100%; /* Define a altura como 100% (exibe o menu) */
+    }
+  
+    /* Estilo para o ícone do menu */
+    .menu-icon i {
+      font-size: 1.7em; /* Define o tamanho da fonte */
+    }
+}

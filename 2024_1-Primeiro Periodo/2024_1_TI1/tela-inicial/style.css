@@ -1,0 +1,79 @@
+/* Body */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url(Design\ sem\ nome.png);
+}
+
+/* Cabecalho */
+
+header {
+  background-color: #54644B;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  text-align: 10px;
+  margin-left: 30px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+
+/* Conteudo principal */
+
+.div-titulo {
+  margin-bottom: 10px;
+  padding: 0px;
+}
+
+.titulo {
+  margin: 0px;
+  padding: 0px;
+}
+
+.fill_green
+{
+  background-color: #A4B79A;
+  padding: 30px 30px;
+  border-radius: 6px;
+}
+.container
+{
+  margin: 9% 0;
+}
+
+.caixa {
+  padding: 15px;
+}
+
+.imagem {
+  margin-bottom: 10px;
+}
+
+
+/* Rodape */
+
+footer {
+  background-color: #54644B;
+  color: white;
+  text-align: center;
+  margin-bottom: 0px;
+  width: 100%;
+  position: absolute;
+  bottom:0%;
+}

@@ -1,0 +1,62 @@
+{
+  "carrossel": [
+    {
+      "id": 1,
+      "desc": "Curso completo e gratuito de Ciências da Computação de Havard",
+      "img":"./assets/img/img1.webp",
+      "alt": "Curso gratuito Havard"
+    },
+    {
+      "id": 2,
+      "desc": "Repl.it pessoal",
+      "img":"./assets/img/img2.png",
+      "alt": "Replit pessoal"
+    },
+    {
+      "id": 3,
+      "desc": "Emulador de Atari feito dentro do Minecraft",
+      "img":"./assets/img/img3.png",
+      "alt": "Emulador Atari"
+    },
+    {
+      "id": 4,
+      "desc": "Documentação detalhada sobre o Bootstrap",
+      "img":"./assets/img/img4.png",
+      "alt": "Documentação Bootstrap"
+    },
+    {
+      "id": 5,
+      "desc": "Comunidade no Reddit focada em programação no Minecraft sem mods",
+      "img":"./assets/img/img5.png",
+      "alt": "Reddit programação"
+    }
+  ],
+  "colegas": [
+    {
+      "id": 11,
+      "nome": "Cristiano",
+      "img": "./assets/img/cristiano.jpg",
+      "alt": "Cristiano"
+    },
+    {
+      "id": 12,
+      "nome": "André",
+      "img":"./assets/img/andrezera.jpg",
+      "alt": "André"
+    },
+    {
+      "id": 13,
+      "nome": "Othon",
+      "img":"./assets/img/othon.png",
+      "alt": "Othon"
+    }
+  ],
+  "perfil": [
+    {
+      "id": 101,
+      "email": "alt.matheus.coxir@gmail.com",
+      "twitter": "https://twitter.com/MatheuzaoSC",
+      "insta": "https://www.instagram.com/matheus_coxir"
+    }
+  ]
+}

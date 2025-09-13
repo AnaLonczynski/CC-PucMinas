@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cadastro CNPJ</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="pagina-container">
+      <div class="formularios-container">
+        <div class="formulario-circle">
+          <input id="logo-input" type="file" />
+          <label for="logo-input">Inserir logo</label>
+        </div>
+        <div class="formulario-box">
+          <label>CNPJ</label>
+          <input class="input-text" id="cnpj-input" />
+          <label>Endereço</label>
+          <input class="input-text" id="endereco-input" />
+          <label>Telefone</label>
+          <input class="input-text" id="telefone-input" />
+          <label>E-mail</label>
+          <input class="input-text" id="email-input" />
+        </div>
+        <div class="formulario-box">
+          <label>Nome</label>
+          <input class="input-text" id="nome-input" />
+          <label>Senha</label>
+          <input class="input-text" id="senha-input" />
+          <label>Confirmar Senha</label>
+          <input class="input-text" id="confirmar-senha-input" />
+          <div id="confirmar-senha-msg-erro">Senhas informadas diferentes</div>
+        </div>
+      </div>
+      <div class="botao-cadastro-container">
+        <button onclick="botaoCadastrarOnClick()" class="botao-cadastro">Cadastrar</button>
+      </div>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>

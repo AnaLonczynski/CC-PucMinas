@@ -1,0 +1,526 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+class Main extends MyIO{
+    public static void main (String [] args){
+
+        Scanner scanProvisorio = new Scanner(System.in);
+        int LookingId;
+        String entrada;
+        //List<Pokemon> pokedex = ler.readAllFile("2024_2_AEDS2/TP2/Java/Q13/pokemon.csv");
+        List<Pokemon> pokedex = ler.readAllFile("/tmp/pokemon.csv");
+
+        List<Pokemon> lista = new ArrayList<>();
+        println("Q13");
+
+
+        // Ler ate FIM, e procurar por ID, e adicionar na List
+        while (!(entrada = scanProvisorio.nextLine()).equals("FIM")) {
+            LookingId = Integer.parseInt(entrada);
+            lista.add(PokemonSearch.searchPokemonId(pokedex, LookingId));
+        }
+
+        Q13.MergeSort(lista, 0, lista.size());
+
+        
+        // Imprime a lista de Pokemons selecionados
+        for(int i = 0; i < lista.size(); i++)
+        {
+        Pokemon.imprimir(lista.get(i));
+        }
+
+        scanProvisorio.close();
+    }
+}
+
+class Q13{
+
+
+    public static void swap(List<Pokemon> vetor, int i, int j ){
+        Pokemon tmp = vetor.get(i);
+        vetor.set(i,vetor.get(j));
+        vetor.set(j, tmp);
+    }
+/* 
+    public static void intercalar(List<Pokemon> vetor, int esq, int meio, int dir) {
+        int nEsq = (meio + 1) - esq; // Número de elementos na parte esquerda
+        int nDir = dir - meio; // Número de elementos na parte direita
+    
+        List<Pokemon> arrayEsq = new ArrayList<>(nEsq);
+        List<Pokemon> arrayDir = new ArrayList<>(nDir);
+    
+        // Copiar elementos para arrayEsq
+        for (int iEsq = 0; iEsq < nEsq; iEsq++) {
+            arrayEsq.add(vetor.get(esq + iEsq));
+        }
+    
+        // Copiar elementos para arrayDir
+        for (int iDir = 0; iDir < nDir; iDir++) {
+            arrayDir.add(vetor.get(meio + 1 + iDir));
+        }
+    
+        // Intercalar os arrays temporários de volta no vetor original
+        int iEsq = 0, iDir = 0;
+        for (int i = esq; i <= dir; i++) {
+            if (iEsq >= arrayEsq.size()) {
+                vetor.set(i, arrayDir.get(iDir));
+                iDir++;
+            } else if (iDir >= arrayDir.size()) {
+                vetor.set(i, arrayEsq.get(iEsq));
+                iEsq++;
+            } else if (compareType(arrayEsq.get(iEsq), arrayDir.get(iDir)) <= 0) {
+                vetor.set(i, arrayEsq.get(iEsq));
+                iEsq++;
+            } else {
+                vetor.set(i, arrayDir.get(iDir));
+                iDir++;
+            }
+        }
+    }
+
+    public static void MergeSort(List<Pokemon> vetor, int esq, int dir) {
+        if (esq < dir) {
+            int meio = (esq + dir) / 2;
+    
+            MergeSort(vetor, esq, meio);
+            MergeSort(vetor, meio + 1, dir);
+            intercalar(vetor, esq, meio, dir - 1); // Corrigido aqui
+        }
+    }*/
+    
+    private void intercalar(ArrayList<Integer> vetor, int esq, int meio, int dir) {
+        int nEsq = meio - esq + 1;
+        int nDir = dir - meio;
+    
+        // Inicializa os arrays esquerdo e direito
+        ArrayList<Integer> arrayEsq = new ArrayList<>(nEsq);
+        ArrayList<Integer> arrayDir = new ArrayList<>(nDir);
+    
+        // Preenche o array esquerdo
+        for (int iEsq = 0; iEsq < nEsq; iEsq++) {
+            arrayEsq.add(vetor.get(esq + iEsq));
+        }
+    
+        // Preenche o array direito
+        for (int iDir = 0; iDir < nDir; iDir++) {
+            arrayDir.add(vetor.get(meio + 1 + iDir));
+        }
+    
+        // Realiza a mesclagem
+        int iEsq = 0, iDir = 0;
+        int i = esq;
+    
+        while (iEsq < nEsq && iDir < nDir) {
+            if (arrayEsq.get(iEsq) <= arrayDir.get(iDir)) {
+                vetor.set(i, arrayEsq.get(iEsq));
+                iEsq++;
+            } else {
+                vetor.set(i, arrayDir.get(iDir));
+                iDir++;
+            }
+            i++;
+        }
+    
+        // Copia os elementos restantes do array esquerdo, se houver
+        while (iEsq < nEsq) {
+            vetor.set(i, arrayEsq.get(iEsq));
+            iEsq++;
+            i++;
+        }
+    
+        // Copia os elementos restantes do array direito, se houver
+        while (iDir < nDir) {
+            vetor.set(i, arrayDir.get(iDir));
+            iDir++;
+            i++;
+        }
+    }
+    
+    
+
+    public static void MergeSort(List<Pokemon> vetor, int esq, int dir){
+        if(esq < dir){
+            int meio = (esq+dir)/2;
+
+            MergeSort(vetor, esq, meio);
+            MergeSort(vetor, meio+1, dir);
+            intercalar(vetor, esq, meio, dir);
+
+        }
+    }
+
+    public static void InsertionSort(List<Pokemon> vetor) {
+        for (int i = 1; i < vetor.size(); i++) {
+            Pokemon menor = vetor.get(i);  // Evita o uso de clone
+            int j = i;
+            boolean test = true;
+    
+            while (test && j > 0 && vetor.get(j - 1).getCaptureDate().compareTo(menor.getCaptureDate()) >= 0) {
+                if (vetor.get(j - 1).getCaptureDate().compareTo(menor.getCaptureDate()) == 0) {
+                    if (vetor.get(j - 1).getName().compareTo(menor.getName()) > 0) {
+                        vetor.set(j, vetor.get(j - 1));  // Apenas desloca a referência, sem clone
+                        j--;
+                    } else {
+                        test = false;
+                    }
+                } else {
+                    vetor.set(j, vetor.get(j - 1));  // Apenas desloca a referência, sem clone
+                    j--;
+                }
+            }
+    
+            vetor.set(j, menor);  // Coloca a referência correta sem criar um clone
+        }
+    }
+
+    
+    public static int compareType (Pokemon a, Pokemon b) {
+        List<String> typesA = a.getTypes();
+        List<String> typesB = b.getTypes();
+
+        int sizeComparison = Integer.compare(typesA.size(), typesB.size());
+        if (sizeComparison != 0) {
+            return sizeComparison;
+        }
+
+        for (int i = 0; i < typesA.size(); i++) {
+            int typeComparison = typesA.get(i).compareTo(typesB.get(i));
+            if (typeComparison != 0) {
+                return typeComparison;
+            }
+        }
+
+        return a.getName().compareTo(b.getName());
+    }
+
+    public static int compare(Pokemon a, Pokemon b) {
+        
+        int heightComparison = Double.compare(a.getHeight(), b.getHeight());
+        if (heightComparison != 0) {
+            return heightComparison;
+        } else {
+            return a.getName().compareTo(b.getName());
+        }
+    }
+    
+    public static int contaObjetos(List<Pokemon> vetor){
+        int count = 0;
+        for(int i = 0; i < vetor.size(); i++){
+            if(vetor.get(i) == null){
+                i = vetor.size();
+            }
+            else{
+                count++;
+            }
+        }
+
+        return count;
+    }
+    
+}
+
+/*
+--------------
+Classe Pokemon
+--------------
+*/
+class Pokemon{
+    private int id;
+    private String name;
+    private int generation;
+    private String description;
+    private double weight;
+    private int captureRate;
+    private boolean isLegendary;
+    private Date captureDate;
+    private ArrayList<String> types;
+    private ArrayList<String> abilities;
+    private double height;
+    
+
+    public Pokemon(){  
+        this.id = 0;
+        this.generation = 0;
+        this.name = "";
+        this.description = "";
+        this.types = new ArrayList<>();
+        this.abilities = new ArrayList<>();
+        this.weight = 0.0;
+        this.height = 0.0;
+        this.captureRate = 0;
+        this.isLegendary = false;
+        this.captureDate = new Date();
+    }
+    
+    public Pokemon(int id, int generation, String name, String description, ArrayList<String> types, 
+                   ArrayList<String> abilities, double weight, double height, int captureRate, 
+                   boolean isLegendary, Date captureDate){
+        this.id = id;
+        this.generation = generation;
+        this.name = name;
+        this.description = description;
+        this.types = types;
+        this.abilities = abilities;
+        this.weight = weight;
+        this.height = height;
+        this.captureRate = captureRate;
+        this.isLegendary = isLegendary;
+        this.captureDate = captureDate;
+    }
+
+    public Pokemon(String[] space) throws Exception {
+        
+        for (int i = 0; i < space.length; i++) {
+            if (space[i].isEmpty()) {
+                    space[i] = "0";
+            }
+        }
+
+        // Atribuir atributos numéricos
+        this.id = Integer.parseInt(space[0]);
+        this.generation = Integer.parseInt(space[1]);
+
+        // Atribuir atributos de texto
+        this.name = space[2];
+        this.description = space[3];
+
+        // Tipos (um ou dois tipos)
+        this.types = new ArrayList<>();
+        this.types.add("'" + space[4].trim() + "'");
+        if (!space[5].equals("0")) {
+            this.types.add("'" + space[5].trim() + "'");
+        }
+
+        // Processar habilidades (remover aspas e colchetes, e dividir por vírgula)
+        String abilitiesStr = space[6].replace("\"", "").replace("[", "").replace("]", "");
+        String[] abilitiesArray = abilitiesStr.split(",");
+        this.abilities = new ArrayList<>();
+        for (String ability : abilitiesArray) {
+            this.abilities.add(ability.trim());
+        }
+
+        // Peso e altura
+        this.weight = Double.parseDouble(space[7]);
+        this.height = Double.parseDouble(space[8]);
+
+        // Taxa de captura
+        this.captureRate = Integer.parseInt(space[9]);
+
+        // Verificar se é lendário
+        this.isLegendary = space[10].equals("1");
+
+        // Data de captura (se presente)
+        if (space[11].equals("0")) {
+            this.captureDate = null;
+        } else {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            this.captureDate = dateFormat.parse(space[11]);
+        }
+    }
+
+    public Pokemon clone (){
+        Pokemon tmp = new Pokemon();
+        tmp.id = this.id;
+        return tmp;
+    }
+
+    public Pokemon clone (Pokemon pokemon){
+        Pokemon tmp = new Pokemon();
+        tmp.id = pokemon.id;
+        return tmp;
+    }
+
+    /*
+    Método para imprimir o resultado da pokedex
+    */
+    public static void imprimir(Pokemon pokemon){
+        //definir formato da saida da data
+            SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
+            String data = "";
+            //verificar se é válida
+            if(pokemon.captureDate != null){
+                data = formatoSaida.format(pokemon.captureDate);
+            }
+            else{data = "ERRO na data";}
+            //printar dados
+            System.out.println( "[#" + pokemon.id + " -> " + pokemon.name + ": " + pokemon.description + " - " + pokemon.types + " - " + pokemon.abilities + 
+            " - " + pokemon.weight + "kg - " + pokemon.height + "m - " + pokemon.captureRate + "% - " + pokemon.isLegendary + " - " + pokemon.generation + 
+            " gen] - " + data);
+        }
+
+    /*
+    Definindo metodos getters e setters para cada atributo.
+    */
+    public ArrayList<String> getAbilities() {
+        return abilities;
+    }
+    public void setCaptureRate(int captureRate) {
+        this.captureRate = captureRate;
+    }
+    public void setGeneration(int generation) {
+        this.generation = generation;
+    }
+    public void setCaptureDate(Date captureDate) {
+        this.captureDate = captureDate;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setLegendary(boolean isLegendary) {
+        this.isLegendary = isLegendary;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+    public void setHeigh(double height) {
+        this.height = height;
+    }
+    public void setTypes(ArrayList<String> types) {
+        this.types = types;
+    }
+    public Date getCaptureDate() {
+        return captureDate;
+    }
+    public int getCaptureRate() {
+        return captureRate;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public int getGeneration() {
+        return generation;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public double getWeight() {
+        return weight;
+    }
+    public ArrayList<String> getTypes() {
+        return types;
+    }
+    public double getHeight() {
+        return height;
+    }
+    /*
+    Fim da definição dos métodos
+    */
+}
+
+//-------------------------------
+// Classe para leitura do arquivo
+//-------------------------------
+
+class ler{
+    public static List<Pokemon> readAllFile(final String fileName)
+    {
+        List<Pokemon> personagens = new ArrayList<>();
+
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+
+            // Pular o cabecalho
+            br.readLine();
+
+            // Ler linha por linha
+            String linha = new String();
+            while((linha = br.readLine()) != null)
+            {
+                // Tratar a linha, para conseguir fazer o plit em ; sem atrapalhar a lista
+                    linha = lineFormat(linha);
+
+                // Para cada linha, damos split e jogamos para o construtor, e adicionamos a instancia toda preenchida no nosso array
+                Pokemon pessoa = new Pokemon(linha.split(";"));
+                personagens.add(pessoa);
+            }
+
+            br.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            personagens = null;
+        }
+
+        return personagens;
+    }
+
+    // Subistituir todas as , por ; para dar split (menos as , dentro de [])
+    private static String lineFormat(String line)
+    {
+        char[] array_aux = line.toCharArray();
+        boolean in_list = false;
+        for (int i = 0; i < array_aux.length; i++)
+        {
+            if (!in_list && array_aux[i] == ',') array_aux[i] = ';'; 
+            else if (array_aux[i] == '"') in_list = !in_list;
+        }
+
+        return new String(array_aux);
+    }
+
+}
+
+//---------------------------------------------
+// Função estática que busca um Pokémon pelo ID
+//---------------------------------------------
+
+class PokemonSearch {
+    public static Pokemon searchPokemonId(List<Pokemon> pokemons, int id)
+    {
+        for (Pokemon pokemon : pokemons)
+        {
+            if (pokemon.getId() == id)
+            {
+                return pokemon;
+            }
+        }
+        return null;
+    }
+}
+
+class PokemonSearchName {
+    public static Pokemon pokemonSearchName(List<Pokemon> pokemons, String name)
+    {
+        for (Pokemon pokemon : pokemons)
+        {
+            if (pokemon.getName() == null ? name == null : pokemon.getName().equals(name))
+            {
+                return pokemon;
+            }
+            else{
+                System.out.println("NAO");
+            }
+        }
+        
+        return null;
+    }
+
+    public static String pokemonGetName(List<Pokemon> pokemons, int id)
+    {
+        
+        for (Pokemon pokemon : pokemons)
+        {
+             if (pokemon.getId() == id)
+             {
+                 return pokemon.getName();
+            }
+        }
+        return null;
+    }
+}

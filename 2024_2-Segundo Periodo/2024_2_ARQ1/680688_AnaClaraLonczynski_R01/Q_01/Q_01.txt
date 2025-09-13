@@ -1,0 +1,16 @@
+Ana Clara Lonczynski
+680688
+
+01.)
+
+a.) f(a,b,c,d) = m4 + m8 + m9 + mC + mD + mE
+
+b.) f(A,B,C,D) = M0 . M1 . M2 . M3 . M5 . M6 . M7 . MA . MB . MF
+​
+c.) b'c' + a'cd'
+
+d.) (a+b)(b+c'+d)
+
+e.) NAND(NAND(b',c'),NAND(a',NAND(c,d')))
+
+f.) NOR(NOR(a,b),NOR(b,NOR(c,d)))

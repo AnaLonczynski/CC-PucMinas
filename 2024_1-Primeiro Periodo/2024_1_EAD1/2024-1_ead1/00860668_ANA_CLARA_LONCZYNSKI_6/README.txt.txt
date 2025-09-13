@@ -1,0 +1,1 @@
+Professor, estou enviando juntamente com os exercicios da lista E06 os exercicios do E03.

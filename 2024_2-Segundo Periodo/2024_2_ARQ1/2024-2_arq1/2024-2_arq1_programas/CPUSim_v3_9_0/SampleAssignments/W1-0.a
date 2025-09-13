@@ -1,0 +1,45 @@
+; Programa para calcular o quadrado de N usando a soma de numeros impares
+
+start:  
+    load n              ; Carrega N (numero para calcular o quadrado)
+    store count         ; Armazena N no contador
+
+    load zero           ; Inicializa a soma como 0
+    store sum           ; Armazena a soma em sum
+
+    load one            ; Inicializa o primeiro numero impar
+    store odd           ; Armazena o numero impar atual em odd
+
+loop:
+    load count          ; Carrega o contador
+    subtract zero       ; Subtrai zero (mantem o valor)
+    jmpz done            
+
+    load sum            ; Carrega a soma atual
+    add odd             ; Adiciona o numero impar atual
+    store sum           ; Atualiza a soma
+
+    load odd            ; Carrega o numero impar atual
+    add two             ; Incrementa para o proximo numero impar
+    store odd           ; Atualiza odd
+
+    load count          ; Carrega o contador
+    subtract one        ; Decrementa o contador
+    store count         ; Atualiza o contador
+
+    jump loop            ; Retorna para o inicio do loop
+
+done:
+    load sum            ; Carrega o resultado final (quadrado de N)
+    write               ; Escreve o resultado no console
+
+    stop                ; Finaliza o programa
+
+; Dados para o programa
+zero:      .data 2 0    ; Constante 0
+one:       .data 2 1    ; Constante 1
+two:       .data 2 2    ; Constante 2 (incremento para numeros impares)
+n:         .data 2 4    ; Valor de N (substitua para testar outros valores)
+count:     .data 2 0    ; Contador para o loop
+odd:       .data 2 0    ; Numero impar atual
+sum:       .data 2 0    ; Soma acumulada

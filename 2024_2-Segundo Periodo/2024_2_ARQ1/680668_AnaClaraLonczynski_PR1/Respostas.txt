@@ -1,0 +1,459 @@
+Aluna: Ana Clara Lonczynski
+Matricula: 680668
+Arquitetura de Computadores I
+
+4.)
+a.)
+
+Teste Assembly:
+
+load one   ; Carrega 1 no ACC
+NOT        ; Inverte o valor no ACC
+write      ; Escreve o valor no console
+stop       ; Para o programa  
+
+one: .data 2 1 ; Constante 1
+
+
+
+Registers após a execução:
+ ________________________________
+|name  |width|       value       |
+| pc   |12   |     0000 0000 1000|
+|acc   |16   |1111 1111 1111 1110|
+|ir    |16   |0000 0000 0000 0000|
+|mar   |12   |     0000 0000 0110|
+|mdr   |16   |0000 0000 0000 0000|
+|status|3    |                100|
+|______|_____|___________________|
+
+
+
+
+RAM Main após execução:
+ ___________________________________________________
+|Adress |Data   |             Comments              |
+|0	|4104   |load one ; Carrega 1 no ACC        |
+|2	|-16384	|NOT  ; Inverte o valor no ACC      |
+|4	|16384	|write  ; Escreve o valor no console|
+|6	|0	|stop  ; Para o programa            |
+|8	|1	|one: .data 2 1 ; Constante 1       |
+|_______|_______|___________________________________|
+
+b.)
+
+Teste Assembly:
+load zero   ; Carrega o valor 0 no ACC
+store temp  ; Salva o valor 0 na memoria temporaria
+NAND zero   ; Aplica NAND (esperado: 1)
+write       ; Escreve o resultado no console
+
+load one    ; Carrega o valor 1 no ACC
+NAND zero   ; Aplica NAND (esperado: 1)
+write       ; Escreve o resultado no console
+
+load one    ; Carrega o valor 1 no ACC
+NAND one    ; Aplica NAND (esperado: 0)
+write       ; Escreve o resultado no console
+stop        ; Para o programa
+
+zero: .data 2 0 ; Define o valor 0 na memoria
+one: .data 2 1  ; Define o valor 1 na memoria
+temp: .data 2 0 ; Local temporario para armazenar valores
+
+
+
+Registers após a execução:
+ ________________________________
+|name  |width|       value       |
+| pc   |12   |     0000 0000 0110|
+|acc   |16   |1111 1111 1111 1111|
+|ir    |16   |1101 0000 0001 0110|
+|mar   |12   |     0000 0000 0100|
+|mdr   |16   |1101 0000 0001 0110|
+|status|3    |                000|
+|______|_____|___________________|
+
+
+
+
+RAM Main após execução:
+ __________________________________________________________________________
+|Adress |Data   |                          Comments                        |
+|0	|4118	|load zero ; Carrega o valor 0 no ACC                      |
+|2	|8218	|store temp ; Salva o valor 0 na memoria temporaria        |
+|4	|-12266	|NAND zero ; Aplica NAND (esperado: 1)                     |
+|6	|16384	|write  ; Escreve o resultado no console                   |
+|8	|4120	|load one ; Carrega o valor 1 no ACC                       |
+|10	|-12266	|NAND zero ; Aplica NAND (esperado: 1)                     |
+|12	|16384	|write  ; Escreve o resultado no console                   |
+|14	|4120	|load one ; Carrega o valor 1 no ACC                       |
+|16	|-12264	|NAND one ; Aplica NAND (esperado: 0)                      |
+|18	|16384	|write  ; Escreve o resultado no console                   |
+|20	|0	|stop  ; Para o programa                                   |
+|22	|0	|zero: .data 2 0 ; Define o valor 0 na memoria             |
+|24	|1	|one: .data 2 1 ; Define o valor 1 na memoria              |
+|26	|0	|temp: .data 2 0  | Local temporario para armazenar valores|
+|_______|_______|__________________________________________________________|
+
+c.)
+Teste Assembly:
+; Programa para calcular e mostrar a tabela-verdade de XOR usando NAND
+
+start:
+    ; Configuracaoo inicial
+    load zero            ; Inicializa A com 0
+    store A
+
+    load zero            ; Inicializa B com 0
+    store B
+
+loop:
+    ; Calcula XOR usando NAND
+    load A
+    NAND A               ; NOT A = A NAND A
+    store notA
+
+    load B
+    NAND B               ; NOT B = B NAND B
+    store notB
+
+    load A
+    NAND B               ; A NAND B
+    store nandAB
+
+    load A
+    NAND nandAB          ; A AND NOT B = A NAND (A NAND B)
+    store andANotB
+
+    load B
+    NAND nandAB          ; NOT A AND B = B NAND (A NAND B)
+    store andNotAB
+
+    load andANotB
+    NAND andNotAB        ; XOR = AND(A, NOT B) OR AND(NOT A, B)
+    store xorAB
+
+    ; Escreve os valores de A, B e XOR no console
+    load A
+    write                ; Escreve A
+
+    load B
+    write                ; Escreve B
+
+    load xorAB
+    write                ; Escreve A XOR B
+
+    ; Atualiza os valores de A e B para a prox linha da tabela-verdade
+    load B
+    add one              ; Incrementa B
+    store B
+
+    load B
+    subtract two
+    jmpz next_row          ; Se B == 2, reseta B e incrementa A
+
+    jump loop             ; Continua para calcular a prox linha
+
+next_row:
+    load zero            ; Reseta B para 0
+    store B
+
+    load A
+    add one              ; Incrementa A
+    store A
+
+    load A
+    subtract two
+    jmpz end               ; Se A == 2, termina o programa
+
+    jump loop             ; Continua para calcular a prox linha
+
+end:
+    stop                 ; Finaliza o programa
+
+; Dados
+zero:       .data 2 0    ; Constante 0
+one:        .data 2 1    ; Constante 1
+two:        .data 2 2    ; Constante 2
+A:          .data 2 0    ; Valor de A
+B:          .data 2 0    ; Valor de B
+notA:       .data 2 0    ; NOT A
+notB:       .data 2 0    ; NOT B
+nandAB:     .data 2 0    ; A NAND B
+andANotB:   .data 2 0    ; A AND NOT B
+andNotAB:   .data 2 0    ; NOT A AND B
+xorAB:      .data 2 0    ; A XOR B
+
+
+
+Registers após a execução:
+ ________________________________
+|name  |width|       value       |
+| pc   |12   |     0000 0101 1010|
+|acc   |16   |0000 0000 0000 0000|
+|ir    |16   |0000 0000 0000 0000|
+|mar   |12   |     0000 0101 1000|
+|mdr   |16   |0000 0000 0000 0000|
+|status|3    |                100|
+|______|_____|___________________|
+
+
+
+
+RAM Main após execução:
+ ____________________________________________________________________
+|Adress |Data   |                       Comments                     |
+|0	|4186	|load zero ; Inicializa A com 0                      |
+|2	|8288	|store A                                             |
+|4	|4186	|load zero ; Inicializa B com 0                      |
+|6	|8290	|store B                                             |
+|8	|4192	|load A                                              |
+|10	|-12192	|NAND A ; NOT A = A NAND A                           |
+|12	|8292	|store notA                                          |
+|14	|4194	|load B                                              |
+|16	|-12190	|NAND B ; NOT B = B NAND B                           |
+|18	|8294	|store notB                                          |
+|20	|4192	|load A                                              |
+|22	|-12190	|NAND B ; A NAND B                                   |
+|24	|8296	|store nandAB                                        |
+|26	|4192	|load A                                              |
+|28	|-12184	|NAND nandAB ; A AND NOT B = A NAND (A NAND B)       |
+|30	|8298	|store andANotB                                      |
+|32	|4194	|load B                                              |
+|34	|-12184	|NAND nandAB ; NOT A AND B = B NAND (A NAND B)       |
+|36	|8300	|store andNotAB                                      |
+|38	|4202	|load andANotB                                       |
+|40	|-12180	|NAND andNotAB ; XOR = AND(A, NOT B) OR AND(NOT A, B)|
+|42	|8302	|store                                               |
+|44	|4192	|load A                                              |
+|46	|16384	|write  ; Escreve A                                  |
+|48	|4194	|load B                                              |
+|50	|16384	|write  ; Escreve B                                  |
+|52	|4206	load xorAB                                           |
+|54	|16384	|write  ; Escreve A XOR B                            |
+|56	|4194	|load B                                              |
+|58	|20572	|add one ; Incrementa B                              |
+|60	|8290	|store B                                             |
+|62	|4194	|load B                                              |
+|64	|24670	|subtract two                                        |
+|66	|-24506	|jmpz next_row ; Se B == 2, reseta B e incrementa A  |
+|68	|-28664	|jump loop ; Continua para calcular a prox linha     |
+|70	|4186	|load zero ; Reseta B para 0                         |
+|72	|8290	|store B                                             |
+|74	|4192	|load A                                              |
+|76	|20572	|add one ; Incrementa A                              |
+|78	|8288	|store A                                             |
+|80	|4192	|load A                                              |
+|82	|24670	|subtract two                                        |
+|84	|-24488	|jmpz end ; Se A == 2, termina o programa            |
+|86	|-28664	|jump loop ; Continua para calcular a prox linha     |
+|88	|0	|stop  ; Finaliza o programa                         |
+|90	|0	|zero: .data 2 0 ; Constante 0                       |
+|92	|1	|one: .data 2 1 ; Constante 1                        |
+|94	|2	|two: .data 2 2 ; Constante 2                        |
+|96	|2	|A: .data 2 0 ; Valor de A                           |
+|98	|0	|B: .data 2 0 ; Valor de B                           |
+|100	|-2	|notA: .data 2 0 ; NOT A                             |
+|102	|-2	|notB: .data 2 0 ; NOT B                             |
+|104	|-2	|nandAB: .data 2 0 ; A NAND B                        |
+|106	|-1	|andANotB: .data 2 0 ; A AND NOT B                   |
+|108	|-1	|andNotAB: .data 2 0 ; NOT A AND B                   |
+|110	|0	|xorAB: .data 2 0 ; A XOR B                          |
+|_______|_______|____________________________________________________|
+
+d.)
+
+Teste Assembly:
+; Programa para calcular e exibir os 6 primeiros numeros da serie de Fibonacci
+
+start:  
+    load zero           ; Inicializa F(0) no acumulador
+    store fib1          ; Armazena F(0) em fib1
+    write               ; Escreve F(0) no console
+
+    load one            ; Inicializa F(1) no acumulador
+    store fib2          ; Armazena F(1) em fib2
+    write               ; Escreve F(1) no console
+
+    load count          ; Carrega o contador (numero de iteracoes restantes)
+    store iterations    ; Armazena o contador para uso no loop
+
+loop:
+    load fib1           ; Carrega F(n-2)
+    add fib2            ; Soma F(n-1)
+    store result        ; Armazena o resultado em result (F(n))
+    write               ; Escreve F(n) no console
+
+    load fib2           ; Atualiza F(n-2) com o valor de F(n-1)
+    store fib1          ; Armazena em fib1
+
+    load result         ; Atualiza F(n-1) com o valor de F(n)
+    store fib2          ; Armazena em fib2
+
+    load iterations     ; Carrega o contador de iteracoes restantes
+    subtract one             ; Decrementa o contador
+    store iterations    ; Armazena o novo valor do contador
+
+    jump loop            ; Retorna para o inicio do loop
+
+end_loop:
+    stop                ; Finaliza o programa
+
+; Dados para o programa
+zero: .data 2 0    ; Constante 0
+one: .data 2 1    ; Constante 1
+fib1: .data 2 0    ; Armazena F(n-2)
+fib2: .data 2 0    ; Armazena F(n-1)
+result: .data 2 0    ; Armazena F(n)
+count: .data 2 4    ; Numero de iteracoes restantes (6 numeros - 2 ja calculados)
+iterations: .data 2 0   ; Contador para o loop
+
+
+
+Registers após a execução:
+ ________________________________
+|name  |width|       value       |
+| pc   |12   |     0000 0001 0100|
+|acc   |16   |1011 0101 0010 0000|
+|ir    |16   |0101 0000 0011 0000|
+|mar   |12   |     0000 0011 0000|
+|mdr   |16   |0110 1111 1111 0001|
+|status|3    |                100|
+|______|_____|___________________|
+
+
+
+
+RAM Main após execução:
+ ______________________________________________________________________________________________
+|Adress |Data   |                                      Comments                                |
+|0	|4138	|load zero ; Inicializa F(0) no acumulador                                     |
+|2	|8238	|store fib1 ; Armazena F(0) em fib1                                            |
+|4	|16384	|write  ; Escreve F(0) no console                                              |
+|6	|4140	|load one ; Inicializa F(1) no acumulador                                      |
+|8	|8240	|store fib2 ; Armazena F(1) em fib2                                            |
+|10	|16384	|write  ; Escreve F(1) no console                                              |
+|12	|4148	|load count ; Carrega o contador (numero de iteracoes restantes)               |
+|14	|8246	|store iterations ; Armazena o contador para uso no loop                       |
+|16	|4142	|load fib1 ; Carrega F(n-2)                                                    |
+|18	|20528	|add fib2 ; Soma F(n-1)                                                        |
+|20	|8242	|store result ; Armazena o resultado em result (F(n))                          |
+|22	|16384	|write  ; Escreve F(n) no console                                              |
+|24	|4144	|load fib2 ; Atualiza F(n-2) com o valor de F(n-1)                             |
+|26	|8238	|store fib1 ; Armazena em fib1                                                 |
+|28	|4146	|load result ; Atualiza F(n-1) com o valor de F(n)                             |
+|30	|8240	|store fib2 ; Armazena em fib2                                                 |
+|32	|4150	|load iterations ; Carrega o contador de iteracoes restantes                   |
+|34	|24620	|subtract one ; Decrementa o contador                                          |
+|36	|8246	|store iterations ; Armazena o novo valor do contador                          |
+|38	|-28656	|jump loop ; Retorna para o inicio do loop                                     |
+|40	|0	|stop  ; Finaliza o programa                                                   |
+|42	|0	|zero: .data 2 0 ; Constante 0                                                 |
+|44	|1	|one: .data 2 1 ; Constante 1                                                  |
+|46	|17711	|fib1: .data 2 0 ; Armazena F(n-2)                                             |
+|48	|28657	|fib2: .data 2 0 ; Armazena F(n-1)                                             |
+|50	|28657	|result: .data 2 0 ; Armazena F(n)                                             |
+|52	|4	|count: .data 2 4 ; Numero de iteracoes restantes (6 numeros - 2 ja calculados)|
+|54	|-18	|iterations: .data 2 0 ; Contador para o loop|                                 |
+|_______|_______|______________________________________________________________________________|
+
+e.)
+
+Teste Assembly:
+; Programa para calcular o quadrado de N usando a soma de numeros impares
+
+start:  
+    load n              ; Carrega N (numero para calcular o quadrado)
+    store count         ; Armazena N no contador
+
+    load zero           ; Inicializa a soma como 0
+    store sum           ; Armazena a soma em sum
+
+    load one            ; Inicializa o primeiro numero impar
+    store odd           ; Armazena o numero impar atual em odd
+
+loop:
+    load count          ; Carrega o contador
+    subtract zero       ; Subtrai zero (mantem o valor)
+    jmpz done            
+
+    load sum            ; Carrega a soma atual
+    add odd             ; Adiciona o numero impar atual
+    store sum           ; Atualiza a soma
+
+    load odd            ; Carrega o numero impar atual
+    add two             ; Incrementa para o proximo numero impar
+    store odd           ; Atualiza odd
+
+    load count          ; Carrega o contador
+    subtract one        ; Decrementa o contador
+    store count         ; Atualiza o contador
+
+    jump loop            ; Retorna para o inicio do loop
+
+done:
+    load sum            ; Carrega o resultado final (quadrado de N)
+    write               ; Escreve o resultado no console
+
+    stop                ; Finaliza o programa
+
+; Dados para o programa
+zero:      .data 2 0    ; Constante 0
+one:       .data 2 1    ; Constante 1
+two:       .data 2 2    ; Constante 2 (incremento para numeros impares)
+n:         .data 2 4    ; Valor de N (substitua para testar outros valores)
+count:     .data 2 0    ; Contador para o loop
+odd:       .data 2 0    ; Numero impar atual
+sum:       .data 2 0    ; Soma acumulada
+
+
+
+
+Registers após a execução:
+ ________________________________
+|name  |width|       value       |
+| pc   |12   |     0000 0010 1100|
+|acc   |16   |0000 0000 0001 0000|
+|ir    |16   |0000 0000 0000 0000|
+|mar   |12   |     0000 0010 1010|
+|mdr   |16   |0000 0000 0000 0000|
+|status|3    |                100|
+|______|_____|___________________|
+
+
+
+
+RAM Main após execução:
+ ________________________________________________________________________________
+|Adress |Data   |                  Comments                                      |
+|0	|4146	|load n ; Carrega N (numero para calcular o quadrado)            |
+|2	|8244	|store count ; Armazena N no contador                            |
+|4	|4140	|load zero ; Inicializa a soma como 0                            |
+|6	|8248	|store sum ; Armazena a soma em sum                              |
+|8	|4142	|load one ; Inicializa o primeiro numero impar                   |
+|10	|8246	|store odd ; Armazena o numero impar atual em                    |
+|12	|4148	|load count ; Carrega o contador                                 |
+|14	|24620	|subtract zero ; Subtrai zero (mantem o valor)                   |
+|16	|-24538	|jmpz done                                                       |
+|18	|4152	|load sum ; Carrega a soma atual                                 |
+|20	|20534	|add odd ; Adiciona o numero impar atual                         |
+|22	|8248	|store sum ; Atualiza a soma                                     |
+|24	|4150	|load odd ; Carrega o numero impar atual                         |
+|26	|20528	|add two ; Incrementa para o proximo numero impar                |
+|28	|8246	|store odd ; Atualiza odd                                        |
+|30	|4148	|load count ; Carrega o contador                                 |
+|32	|24622	|subtract one ; Decrementa o contador                            |
+|34	|8244	|store count ; Atualiza o contador                               |
+|36	|-28660	|jump loop ; Retorna para o inicio do loop                       |
+|38	|4152	|load sum ; Carrega o resultado final (quadrado de N)            |
+|40	|16384	|write  ; Escreve o resultado no console                         |
+|42	|0	|stop  ; Finaliza o programa                                     |
+|44	|0	|zero: .data 2 0 ; Constante 0                                   |
+|46	|1	|one: .data 2 1 ; Constante 1                                    |
+|48	|2	|two: .data 2 2 ; Constante 2 (incremento para numeros impares)  |
+|50	|4	|n: .data 2 4 ; Valor de N (substitua para testar outros valores)|
+|52	|0	|count: .data 2 0 ; Contador para o loop                         |
+|54	|9	|odd: .data 2 0 ; Numero impar atual                             |
+|56	|16	|sum: .data 2 0 ; Soma acumulada                                 |
+|_______|_______|________________________________________________________________|

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Cadastro ONG</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<header>
+  <h1>Cadastro ONG</h1>
+</header>
+
+<body>
+  <main class="pagina-container">
+    <div class="formularios-container">
+      <div class="formulario-circle">
+        <label>Inserir html da logo</label>
+        <input class="input-text-logo" id="input-logo" />
+      </div>
+
+      <div class="formulario-box">
+        <label>CNPJ</label>
+        <input class="input-text" id="cnpj-input" />
+        <label>Endereço</label>
+        <input class="input-text" id="endereco-input" />
+        <label>Telefone</label>
+        <input class="input-text" id="telefone-input" />
+        <label>E-mail</label>
+        <input class="input-text" id="email-input" />
+      </div>
+      <div class="formulario-box">
+        <label>Nome</label>
+        <input class="input-text" id="nome-input" />
+        <label>História</label>
+        <input class="input-text-historia" id="historia-input" />
+        <label>Senha</label>
+        <input class="input-text" id="senha-input" />
+        <label>Confirmar Senha</label>
+        <input class="input-text" id="confirmar-senha-input" />
+
+        <div id="confirmar-senha-msg-erro">Senhas informadas diferentes</div>
+      </div>
+    </div>
+    <div class="botao-cadastro-container">
+      <button onclick="AC_botaoCadastrarOnClick()" class="botao-cadastro">Cadastrar</button>
+    </div>
+  </main>
+  <script src="index2.js"></script>
+  <footer>
+    <p>&copy; rodapé</p>
+  </footer>
+</body>
+
+</html>

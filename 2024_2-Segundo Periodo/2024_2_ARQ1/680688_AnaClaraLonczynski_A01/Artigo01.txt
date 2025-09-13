@@ -1,0 +1,125 @@
+﻿1. Introdução:
+
+
+A tecnologia dos circuitos digitais tem avançado rapidamente nas últimas décadas. No início, a arquitetura dos computadores era baseada em portas lógicas individuais, o que resultava em um grande número de chips contendo portas básicas, como AND e OR. Com o progresso tecnológico, projetos mais complexos começaram a adotar circuitos mais elaborados, utilizando módulos programáveis que permitem a implementação de sistemas digitais. Esses módulos possuem uma estrutura padrão, mas são personalizados para funções específicas. Atualmente, não é mais necessário desenhar portas lógicas individuais e planejar todas as suas interconexões. As linguagens de descrição de hardware (HDLs) se tornaram uma norma consolidada tanto no meio acadêmico quanto na indústria para a elaboração de projetos. Além disso, existem ferramentas de síntese lógica automática que facilitam o mapeamento de circuitos em diversas tecnologias. Todas essas inovações exigem uma prototipação cada vez mais ágil, uma vez que o ciclo de vida dos produtos modernos está se encurtando em relação ao tempo necessário para o seu projeto e desenvolvimento.
+
+
+O mercado de PLDs (dispositivos lógicos programáveis) está em franca expansão, com diversos fabricantes e modelos disponíveis atualmente. Uma das principais responsabilidades do projetista hoje é pesquisar e escolher, entre as opções disponíveis no mercado, aquela que melhor se adequa às suas necessidades.
+
+
+2.  Conceitos Essenciais:
+
+
+Num primeiro momento será trago a definição de conceitos imprescindíveis para a compreensão das PLDs:
+
+
+2.1.  ASIC
+
+
+Cl’s personalizados, ou ASICs (circuitos integrados de aplicação específica), requerem um processo de fabricação especial com máscaras específicas, resultando em longos prazos de desenvolvimento e altos custos. Contudo, em aplicações com grande volume de produção, o investimento em projeto e testes pode ser compensado ao longo do tempo.
+
+
+2.2.  SPLD
+
+
+Os Dispositivos de Lógica Programável Simples (SPLD) são circuitos com uma estrutura interna composta por portas AND/OR organizadas em arranjos lógicos. Podem incluir flip-flops na saída, dependendo da configuração. Essa categoria abrange pequenos PLDs, destacando-se pelo baixo custo e alto desempenho.
+
+
+2.3.  CPLD
+
+
+Os Dispositivos Lógicos Programáveis Complexos (CPLDs) são chips que integram múltiplos PLDs em uma única unidade. Cada bloco lógico dentro do CPLD se comunica por meio de interconexões programáveis, permitindo uma melhor utilização da área de integração em silício, o que resulta em maior desempenho e redução de custos. Um único CPLD pode substituir centenas de componentes tradicionais, como as portas lógicas 74XX.
+
+
+As interconexões programáveis funcionam como um barramento que conecta as entradas e saídas de diferentes blocos lógicos, possibilitando a troca de sinais. Cada bloco lógico é semelhante a um SPLD e contém macrocélulas com suas próprias interconexões. No entanto, as conexões entre os blocos lógicos da CPLD podem não ser totalmente configuráveis, o que pode limitar a utilização completa das macrocélulas. Isso significa que, embora algumas conexões sejam teoricamente possíveis, na prática pode não ser viável realizá-las.
+
+
+2.4.   FPGA
+
+
+Os Arranjos Lógicos Programáveis em Campo (FPGA) são circuitos programáveis que, ao contrário dos CPLDs, não têm planos fixos de portas AND e OR. Em vez disso, contêm milhares de unidades idênticas chamadas blocos lógicos, que podem ser configuradas de forma independente. Essas unidades lógicas funcionam como componentes padrão e podem ser interconectadas através de uma matriz de trilhas condutoras e chaves programáveis, permitindo uma grande flexibilidade na implementação de diferentes funções lógicas.
+
+
+
+
+3. Exemplos de tipos e classes de dispositivos programáveis}
+
+
+Existem diversos tipos de DPLs com alta
+capacidade de implementar funções lógicas, como por exemplo: 
+
+
+* PLA (Programmable Logic Array ),
+* PAL (Programmable Array Logic ),
+* CPLD's (Complex Programmable Logic Devices )
+* MPGA (Mask Programmable Gate Array )
+* FPGA (Field Programmable Gate Array )
+
+
+Em um primeiro momento iremos discorrer apenas sobre as: PROM, PLA e PAL.
+
+
+3.1.  PROM
+
+
+A PROM (Programmable Read-Only Memory) é um tipo de memória não volátil que permite ao usuário programar dados de forma permanente. Ela funciona como um decodificador de endereços, utilizando portas AND fixas para processar as entradas e uma matriz OR programável, onde as conexões podem ser ajustadas pelo usuário. Para programar a PROM, aplica-se uma tensão elevada que "queima" conexões, configurando os bits que devem ser armazenados como "0". Embora tenha sido uma das primeiras memórias programáveis, sua arquitetura não é a mais eficiente para implementar circuitos lógicos complexos, sendo mais utilizada em aplicações que requerem combinações específicas de entradas, como conversores de código e tabelas de dados
+
+
+3.2.  PLA
+
+
+A PLA (Programmable Logic Array) é um dispositivo projetado para implementar funções lógicas definidas, sendo composta por matrizes programáveis de portas AND e OR. Ao contrário da PROM, onde a matriz de AND é fixa, a PLA permite a programação tanto das interconexões AND quanto das OR, tornando-a adequada para a implementação de funções na forma de soma de produtos e proporcionando maior versatilidade em termos de entradas. No entanto, sua aceitação pelos projetistas foi limitada devido ao alto custo de fabricação e complexidade de design, uma vez que possui menos portas AND e requer duas matrizes de conexão programáveis para compensar essa limitação.
+
+
+3.3.  PPAL
+
+
+O PAL (Programmable Array Logic) é um dispositivo de lógica programável introduzido em 1978 pela Monolithic, que se distingue pela sua estrutura simplificada, consistindo em arranjos programáveis de portas AND e arranjos fixos de portas OR. Essa configuração torna o PAL mais econômico de fabricar em comparação com dispositivos como a PLA, pois apenas a matriz de conexão das portas AND é programável. Cada porta AND pode gerar combinações de produtos AND a partir das entradas, enquanto as portas OR são ligadas a um número limitado de saídas AND, geralmente a duas, o que restringe as funções que podem ser implementadas.
+
+
+Embora o PAL seja uma versão simplificada da PLA, ele é adequado para muitas aplicações que não exigem a programação de todas as combinações de entrada. A limitação de duas entradas para as portas OR significa que se uma função lógica precisar de mais de dois produtos AND, outra solução com mais entradas será necessária. Se forem utilizadas menos de duas saídas, as que não forem utilizadas devem ser definidas para o nível lógico "0", garantindo que a implementação permaneça funcional dentro de suas restrições.
+
+
+3.4.  Comparações finais:
+
+
+As memórias PROM, PLA e PAL são tipos de dispositivos que permitem criar funções lógicas, mas cada um tem suas peculiaridades. A PROM (Programmable Read-Only Memory) possui um arranjo de portas AND que não muda e um arranjo de portas OR que você pode programar. Isso a torna menos eficiente para circuitos mais complexos e mais adequada para usos fixos, como tabelas de dados. Por outro lado, a PLA (Programmable Logic Array) é mais flexível porque permite programar tanto as portas AND quanto as OR, tornando-a ótima para implementar funções lógicas. No entanto, essa versatilidade vem com um custo mais alto e um design mais denso.
+
+
+Por outro lado, a PAL (Programmable Array Logic) simplifica a estrutura, com uma matriz de portas AND programável e uma matriz de portas OR fixa. Essa configuração reduz o custo de fabricação, tornando-a mais acessível para aplicações que não exigem todas as combinações de entrada. Embora a PAL tenha menos flexibilidade do que a PLA, ela é eficaz em situações onde apenas dois produtos AND são necessários. Assim, a escolha entre esses dispositivos depende das necessidades do projeto, considerando custo, flexibilidade e complexidade.
+
+
+4.  CPLD ou FPGA?
+
+
+CPLD e FPGA são tipos de barramentos possiveis para a construção de um Dispositivo de lógica Programável de Alta Capacidade (HCPLD). Cada um possuí suas caracteristicas próprias, com suas vantagens e peculiaridades.
+
+
+4.1 CPLD
+
+
+CPLD, ou mais conhecido como Complex Programmable Logic Devices, é um conjunto de múltiplos PLDs em um único chip onde cada bloco lógico comunica com o outro através de interconexões programáveis. As interconexões funcionam como um barramento que roteia os sinais entre blocos lógicos. Cada bloco é como um PLD simples, com suas próprias macrocélulas. No entanto, nem todas as conexões entre blocos são possíveis, o que pode limitar o uso completo de todas as macrocélulas disponíveis. Mesmo assim, o CPLD é uma solução eficiente para reduzir a quantidade de componentes em um circuito.
+
+
+4.2 FPGA
+
+
+Em contraponto, o FPGA, ou também conhecido como Field Programmable Gate Array, é um circuito programável que, diferente de outros dispositivos, não usa portas AND e OR tradicionais. Em vez disso, ele tem milhares de blocos lógicos idênticos que podem ser configurados e interligados de várias formas. Esses blocos funcionam como peças flexíveis que se conectam por meio de uma rede de trilhas condutoras e chaves programáveis.
+
+
+4.2 Diferenças básicas entre CPLD e FPGA:
+
+
+Desse modo, podemos concluir que os principais diferenças entre FPGAs (Field Programmable Gate Arrays) e CPLDs (Complex Programmable Logic Devices), destacando as principais características de cada tecnologia:
+
+
+* FPGAs possuem muitos blocos lógicos pequenos com flip-flops, enquanto CPLDs têm um número reduzido de grandes blocos lógicos.
+* FPGAs são baseados em RAM e perdem a programação ao desligar, precisando ser reconfigurados. CPLDs, baseados em EEPROM, mantêm a programação mesmo após desligados.
+* CPLDs têm melhor tempo de resposta devido à menor complexidade de blocos lógicos, mas são menos flexíveis.
+* FPGAs possuem recursos de roteamento específicos para funções aritméticas e RAM, o que os torna mais adequados para projetos complexos. CPLDs são limitados a projetos menores.
+* A menor granularidade dos CPLDs facilita a programação e o desempenho, enquanto FPGAs oferecem maior flexibilidade devido à sua estrutura.
+
+
+
+
+Assim, a escolha entre CPLD e FPGA deve ser baseada nas necessidades específicas do projeto, cabendo ao projetista selecionar a tecnologia e o dispositivo mais adequados ao contexto.

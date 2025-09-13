@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Magnifico Quiz do Amor 💖</title>
+    <link rel="stylesheet" href="../Valentines/style.css"/>
+</head>
+<body>
+    <h1>O Magnífico Quiz do Amor 😍</h1>
+
+    <div class="quiz-container">
+        <p>Oi, amor!! Quem está escrevendo isso agora é sua namora programadora ChibKuy! 👋</p>
+        <p>Então, aqui estou eu, procrastinando vendo reels de programadores até q me deparo cm uma glr fazendo programas de cartões de dia de São Valentines para seus namorados, ai eu pensei, por que eu não tento algo tbm? Dai veio essa ideia do quiz feito super rápido! Espero q goste 💃</p>
+
+    </div>
+    <div class="quiz-container">
+        <p id="question">Qual foi o nosso primeiro encontro?</p>
+        <button onclick="checkAnswer(true)">No cinema 🍿</button>
+        <button onclick="checkAnswer(false)">Na praia 🌊</button>
+        <button onclick="checkAnswer(false)">Em um café ☕</button>
+        <p id="result"></p>
+    </div>
+    
+    <script>
+        function checkAnswer(correct) {
+            const result = document.getElementById('result');
+            if (correct) {
+                result.innerHTML = "💖 Você acertou, amor! Te amo! 💖";
+            } else {
+                result.innerHTML = "🙈 Errou, mas eu te amo do mesmo jeito! 😘";
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("hearts");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            heart.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 150);
+    </script>
+</body>
+</html>

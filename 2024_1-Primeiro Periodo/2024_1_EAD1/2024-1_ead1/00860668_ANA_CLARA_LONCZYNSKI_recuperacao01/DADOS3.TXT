@@ -1,0 +1,5 @@
+4
+MercadoA 201 5.75
+MercadoB 202 6.20
+MercadoC 203 5.50
+MercadoD 204 5.80

@@ -1,0 +1,91 @@
+
+/* Estilos gerais */
+
+body {
+    font-family: Arial, Helvetica, sans-serif, seriff;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(246, 244, 233);
+}
+
+header {
+   
+    width: 100%; /* Largura total do cabeçalho */
+    display: flex; /* Usa o modelo flexbox para layout */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: space-between; /* Alinha os itens com espaços iguais ao redor */
+    align-items: center; /* Centraliza verticalmente os itens */
+  }
+h1 {
+    color:rgb(222, 73, 140);
+    margin-left: 40px;
+    margin-top: 10px;
+    background-color: #ffc6c6;
+    padding: 10px 25px;
+    font-weight: bold;
+}
+h2 {
+
+    margin-left: 40px;
+    margin-top: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    
+}
+hr {
+    border: none;
+    border-bottom: 3px solid black; /* Cor e espessura da linha */
+    margin: 0px 40px 40px; /* Margem acima e abaixo da linha */
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-right: 40px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: black;
+    font-size:xx-large;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h3 {
+    color:#bd678a;
+    margin: 0px 40px;
+    font-weight: bold;
+}
+
+p {
+    margin: 3px 40px 30px;
+    font-size: large;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0 40px;
+    margin-top: 20px;
+   
+}
+
+.topico li {
+    display: inline-block;
+    margin-right: 20px;
+    background-color: #e1d5d7;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-family: Arial, Helvetica, sans-serif, seriff;
+    font-weight: bold;
+}
+.foto2{
+    display: flex;
+}
+
+
