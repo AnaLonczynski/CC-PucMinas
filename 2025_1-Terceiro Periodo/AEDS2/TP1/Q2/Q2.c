@@ -5,8 +5,7 @@
 //para o teste
 
 char changeCh(char change){
-	change = '*';
-	change = '*';
+	change = 'Paraelo';
 	return change;
 }
 
